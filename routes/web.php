@@ -1,7 +1,7 @@
 <?php
- return [
-"/"=>"home",
-"/login"=>"login",
-"/commandes"=>"commandes",
-"/medicaments"=>"medicaments",
- ];
+return [
+    "/" => ["DashboardController", "index"],
+    "/login" => ["AuthController", "index"],
+    "/commandes" => "commandes",
+    "/medicaments" => "medicaments",
+];

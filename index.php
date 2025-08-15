@@ -9,16 +9,28 @@ $routes = require "./routes/web.php";
 //je specifie que  le path "/" n'ai pas d'espace
 $request_uri = rtrim($request_uri, "/") ?: "/";
 
-//je verifie si l'url entree appartient au tableau assocatif
-if (array_key_exists($request_uri, $routes)) {
-    //je retourne l'url entree
-    $page = $routes[$request_uri];
-} else {
-    //je retourne un 404 si l'url entree n'existe pas
 
+$route = $routes[$request_uri] ?? "404";
+
+if ($route == "404") {
     http_response_code(404);
     $page = "404";
+} elseif (is_array($route)) {
+    $controllerName = $route[0];
+    $method = $route[1];
+    spl_autoload_register(function ($class) {
+        $file = "app/controller/$class.php";
+        if (file_exists($file)) {
+            require $file;
+        }
+    });
+    $controller = new $controllerName();
+    $page = $controller->$method();
+} else {
+    $page = $route;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +40,8 @@ if (array_key_exists($request_uri, $routes)) {
 </head>
 
 <body>
-
     <?php if (in_array($page, $standalone_page)): ?>
-        
+
         <?php include "./views/pages/{$page}.php" ?>
     <?php else: ?>
         <header>
@@ -53,10 +64,10 @@ if (array_key_exists($request_uri, $routes)) {
 
             </section>
         </main>
-            <?php endif; ?>
+    <?php endif; ?>
 
 
-        <script src="./public/assets/js/index.js"></script>
+    <script src="./public/assets/js/index.js"></script>
 </body>
 
 </html>
