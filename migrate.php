@@ -6,6 +6,7 @@ $pdo = new PDO(
     $dbConfig["password"]
 );
 $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION );
+
 foreach(glob(__DIR__ .'/database/migration/*php') as $file)
 {
     echo "Migration trouve: $file .\n ";
