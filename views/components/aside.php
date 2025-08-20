@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./users.html" class="link">
+                    <a href="/users/index" class="link">
                         <i class="fa-solid fa-users"></i>
                         <span>Utilisateurs</span>
                     </a>

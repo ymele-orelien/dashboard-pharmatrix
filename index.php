@@ -26,6 +26,9 @@ if ($route == "404") {
     });
     $controller = new $controllerName();
     $page = $controller->$method();
+    if (property_exists($controller, 'viewData') && !empty($controller->viewData)) {
+        extract($controller->viewData);
+    }
 } else {
     $page = $route;
 }
