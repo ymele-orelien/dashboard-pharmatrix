@@ -13,7 +13,7 @@ foreach(glob(__DIR__ .'/database/migration/*php') as $file)
     $className= pathinfo($file,PATHINFO_FILENAME);
     if(class_exists($className)){
         $className::up($pdo);
-        echo "Migration $className executee .!!";
+        echo "Migration $className executee .!!.\n";
     }else{
         echo ("class $className non trouvee dans le fichier $file.\n");
     }
