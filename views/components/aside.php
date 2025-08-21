@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/medicaments" class="link">
+                    <a href="/medicaments/index" class="link">
                         <i class="fa-solid fa-pills"></i>
                         <span>M&eacute;dicaments</span>
                     </a>
