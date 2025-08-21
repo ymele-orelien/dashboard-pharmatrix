@@ -7,16 +7,16 @@
         </div>
     </div>
 
-    <div class="statuts">
-        <div>
+    <div class="statuts row ">
+        <div class="col">
             <i class="fa-solid fa-chart-simple"></i>
             <div class="description-statut">(12) Admin</div>
         </div>
-        <div>
+        <div class="col">
             <i class="fa-solid fa-chart-line"></i>
             <div class="description-statut">(3) Public Users</div>
         </div>
-        <div>
+        <div class="col">
             <i class="fa-solid fa-check"></i>
             <div class="description-statut">(7) Pharmacies</div>
         </div>
@@ -52,19 +52,34 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Last</th>
                     <th scope="col">Handle</th>
                 </tr>
             </thead>
-               <tbody>
-                <?php foreach ($users as $index=>$user) :?>
+              
+
+                  <tbody>
+                 <?php if (empty($users)): ?>
+                <tr>
+                    <td colspan="5" class="text-center">Aucun utilisateur trouvé.</td>
+                </tr>
                   <tr>
-                      <td><?=$index+1?></td>
-                    <td><?=$user["surname"]?><?=$user["name"]?></td>
-                    <td><?=$user["email"]?></td>
-                    <td><?=$user["phone"]?></td>
-                    <?php endforeach; ?>
+                     <?php else: ?>
+                <?php foreach ($users as $index=> $user): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($index+1) ?></td>
+                        <td><?= htmlspecialchars($user['surname']) ?>-<?= htmlspecialchars($user['name']) ?></td>
+                        <td><?= htmlspecialchars($user['email']) ?></td>
+                        <td><?= htmlspecialchars($user['phone']) ?></td>
+                        <td>
+                            <a href="#" class="btn btn-info btn-sm">Voir</a>
+                            <a href="/users/edit?id=<?=$user['id']?>" class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="/users/delete?id=<?=$user['id']?>" class="btn btn-danger btn-sm" onclick="return confirm('etes  vous sur de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
                   </tr>
                </tbody>
            

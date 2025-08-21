@@ -32,4 +32,42 @@ class User
             ':role' => $data['role']]);
 
     }
+
+    public function find($id)
+    {
+        $stmt= $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function delete ($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
+    }
+
+    public function update($id,$data)
+    {
+        $stmt= $this->pdo->prepare("
+        UPDATE users SET
+        name=:name,
+        surname=:surname,
+        email=:email,
+        phone=:phone, 
+        location=:location,
+        is_active=:is_active,
+        updated_at = CURRENT_TIMESTAMP
+        WHERE id=:id
+        ");
+        return $stmt->execute([
+            ':id' => $id,
+            ':name' => $data['name'],
+            ':surname' => $data['surname'],
+            ':email' => $data['email'],
+            ':phone' => $data['phone'],
+            ':location' => $data['location'],
+            ':is_active' => $data['is_active'] ?? false,
+        ]);
+
+    }
+
 }

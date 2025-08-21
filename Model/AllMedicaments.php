@@ -19,11 +19,10 @@ class AllMedicaments
     }
     public function create($data)
     {
-        $stmt=$this->pdo->prepare("INSERT INTO all_medicaments (name,prix,description)
-         VALUES (:name,:prix,:description)");
+        $stmt=$this->pdo->prepare("INSERT INTO all_medicaments (name,description)
+         VALUES (:name,:description)");
          return $stmt->execute([
             
-            ':prix' => $data['prix'],
             ':name' => $data['name'],
             ':description' => $data['description']
             ]);

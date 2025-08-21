@@ -24,11 +24,6 @@
                     <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description du médicament"></textarea>
                 </div>
 
-                <div class="mb-3">
-                    <label for="prix" class="form-label">Prix (FCFA)</label>
-                    <input type="number" class="form-control" id="prix" name="prix" placeholder="Prix du médicament">
-                </div>
-
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="/medicaments" class="btn btn-secondary">Annuler</a>
             </form>

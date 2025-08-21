@@ -7,16 +7,16 @@
         </div>
     </div>
 
-    <div class="statuts">
-        <div>
+    <div class="statuts row">
+        <div class="col">
             <i class="fa-solid fa-chart-simple"></i>
             <div class="description-statut">(9) Admin</div>
         </div>
-        <div>
+        <div class="col">
             <i class="fa-solid fa-chart-line"></i>
             <div class="description-statut">(4) medicaments</div>
         </div>
-        <div>
+        <div class="col">
             <i class="fa-solid fa-check"></i>
             <div class="description-statut">(70) Pharmacies</div>
         </div>
@@ -56,7 +56,6 @@
                     <th scope="col">#</th>
                     <th scope="col">nom</th>
                     <th scope="col">description</th>
-                    <th scope="col">prix</th>
                     <th scope="col">action</th>
                 </tr>
             </thead>
@@ -67,12 +66,11 @@
                 </tr>
                   <tr>
                      <?php else: ?>
-                <?php foreach ($all_medicaments as $medicament): ?>
+                <?php foreach ($all_medicaments as $index=> $medicament): ?>
                     <tr>
-                        <td><?= htmlspecialchars($medicament['id']+1) ?></td>
+                        <td><?= htmlspecialchars($index+1) ?></td>
                         <td><?= htmlspecialchars($medicament['name']) ?></td>
                         <td><?= htmlspecialchars($medicament['description']) ?></td>
-                        <td><?= htmlspecialchars($medicament['prix'] ?? '') ?></td>
                         <td>
                             <a href="#" class="btn btn-info btn-sm">Voir</a>
                             <a href="#" class="btn btn-warning btn-sm">Modifier</a>
